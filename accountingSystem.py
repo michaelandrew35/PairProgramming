@@ -65,21 +65,21 @@ class AccountingSystem:
 
         :param day: The date for which to calculate the total expenses in 'YYYY-MM-DD' format.
         :type day: str
-        :returns: the total expenses for the specified day if any transactions exist, otherwise -1.
+        :returns: the total expenses for the specified day if any transactions exist.
         :rtype: float
 
         Running Example: user.dayExpenses('2023-03-01'); returns 150.0 for user with id '15317546'
         """
         day = day.replace("-", "")
         daily = [amount for date, amount in self.transactions if date == day]
-        return sum(daily) if daily else -1
+        return sum(daily)
 
     def monthExpenses(self, month):
         """ Calculate the total expenses for a specific month.
 
         :param month: The month for which to calculate the total expenses in 'YYYY-MM' format.
         :type month: str
-        :returns: the average expenses for the specified month if any transactions exist, otherwise -1.
+        :returns: the average expenses for the specified month if any transactions exist.
         :rtype: float
 
         Running Example: user.monthExpenses('2023-03'); returns 4.838709677419355 for user with id '15317546'
@@ -94,7 +94,9 @@ class AccountingSystem:
                 datenum = 29
             else:
                 datenum = 28
-        return sum(monthly) / datenum if monthly else -1
+        if int(month[4:6]) <= 0 or int(month[4:6]) > 12:
+            return 0
+        return sum(monthly) / datenum
 
     def exitprogram(self):
         """Exit the accounting system.
