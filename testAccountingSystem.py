@@ -27,6 +27,15 @@ class TestAccountingSystem(unittest.TestCase):
         system2.init(self.invalidId)
         self.assertEqual(len(system2.transactions), 0)
 
+    def testAllTransactionsOutput(self):
+        """
+        Test function: AccountingSystem.allTransactions()
+        Test description:
+            Verifies that the system reads exactly 9 transactions
+            for user 18501179 from input.txt.
+        """
+        self.assertEqual(len(self.system.transactions), 9)
+
     def testTotalExpenses(self):
         """
         Test function: AccountingSystem.totalExpenses()
@@ -86,15 +95,6 @@ class TestAccountingSystem(unittest.TestCase):
             the function should return -1.
         """
         self.assertEqual(self.system.monthExpenses("1999-12"), -1)
-
-    def testAllTransactionsOutput(self):
-        """
-        Test function: AccountingSystem.allTransactions()
-        Test description:
-            Verifies that the system reads exactly 9 transactions
-            for user 18501179 from input.txt.
-        """
-        self.assertEqual(len(self.system.transactions), 9)
 
     def testExitProgramIsCallable(self):
         """
