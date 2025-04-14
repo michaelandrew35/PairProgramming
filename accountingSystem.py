@@ -1,9 +1,9 @@
 class AccountingSystem:
     """ A class to represent an accounting system. """
-    
+
     def __init__(self):
-        """Initialize the accounting system， by setting up the necessary data structures and configurations for the accounting system.
-        
+        """Initialize the accounting system, by setting up the necessary data structures and configurations for the accounting system.
+
         :param : None
         :type : None
         :returns: None
@@ -72,6 +72,8 @@ class AccountingSystem:
         """
         day = day.replace("-", "")
         daily = [amount for date, amount in self.transactions if date == day]
+        if not daily:
+            return -1
         return sum(daily)
 
     def monthExpenses(self, month):
@@ -95,7 +97,9 @@ class AccountingSystem:
             else:
                 datenum = 28
         if int(month[4:6]) <= 0 or int(month[4:6]) > 12:
-            return 0
+            return -1
+        if not monthly:
+            return -1
         return sum(monthly) / datenum
 
     def exitprogram(self):
